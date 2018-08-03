@@ -11,7 +11,7 @@ import argparse
 import sys
 
 # LED strip configuration:
-LED_COUNT      = sys.argv[1]      # Number of LED pixels.
+#LED_COUNT      = sys.arg[1]      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -90,8 +90,10 @@ def theaterChaseRainbow(strip, wait_ms=50):
 if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
+    parser.add_argument("led_count", type=int, help="Enter the number of LEDs to test")
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
+    LED_COUNT = args.led_count
 
     # Create NeoPixel object with appropriate configuration.
     strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
@@ -99,14 +101,14 @@ if __name__ == '__main__':
     strip.begin()
 
     print ('Press Ctrl-C to quit.')
-    print sys.argv[1]
+    print ('Number of ligts to test:' + str (LED_COUNT))
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
 
     try:
 
         while True:
-            print ('Color wipe animations.')
+            print ('Testing LEDs.....')
             #colorWipe(strip, Color(255, 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             #colorWipe(strip, Color(0, 0, 255))  # Green wipe
@@ -115,7 +117,7 @@ if __name__ == '__main__':
             #theaterChase(strip, Color(127, 127, 127))  # White theater chase
             #theaterChase(strip, Color(127,   0,   0))  # Red theater chase
             #theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
-            print ('Rainbow animations.')
+            #print ('Rainbow animations.')
             #rainbow(strip)
             #rainbowCycle(strip)
             #theaterChaseRainbow(strip)
