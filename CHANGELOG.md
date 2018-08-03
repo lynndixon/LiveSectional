@@ -11,7 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial commit. Building the initial structure, and adding a Changelog to help keep track of changes
 - Added entire ATL sectional into `airports` file.  Only covers those stations that are reporting METARs as of todays date.
+- `test.py` added to test all LED's during startup.  Might change this to a normal sequence in the future. Just using generic rainbow animations for now.
+- `startup.sh` bash script to help startup LiveSectional.
 
 ### Changed
 
 - `test_lights.py` - Modified to include an argument for the number of LED's to light up.
+- `test_leds.py` has been renamed to `led_test.py` for easier tab completion, because I'm lazy like that.

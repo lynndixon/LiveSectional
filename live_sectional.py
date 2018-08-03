@@ -8,7 +8,7 @@ import datetime
 
 
 # LED strip configuration:
-LED_COUNT      = 97      # Number of LED pixels.
+LED_COUNT      = 33      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -19,7 +19,7 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 LED_STRIP      = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 now            = now = datetime.datetime.now()
 timestamp      = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-logfile        = open("/var/log/neosectional.log", "a+")
+logfile        = open("/var/log/livesectional.log", "a+")
 
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, LED_STRIP)
 
@@ -29,7 +29,7 @@ logfile.write("\nMETAR update Began on: " + str(timestamp))
 strip.begin()
 
 
-with open("/NeoSectional/airports") as f:
+with open("/LiveSectional/airports") as f:
     airports = f.readlines()
 airports = [x.strip() for x in airports]
 print airports
@@ -112,7 +112,7 @@ for airportcode in airports:
 
 	i = i+1
 print
-logfile.write("\nNeoSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
 print "fin"
 quit()
 
