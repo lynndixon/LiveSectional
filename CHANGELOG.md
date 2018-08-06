@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `test_lights.py` - Modified to include an argument for the number of LED's to light up.
 - `test_leds.py` has been renamed to `led_test.py` for easier tab completion, because I'm lazy like that.
+- Updated Namespaces in `live_sectional.py` for to our LiveSectional directory.
