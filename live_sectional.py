@@ -32,7 +32,7 @@ strip.begin()
 with open("/LiveSectional/airports") as f:
     airports = f.readlines()
 airports = [x.strip() for x in airports]
-print airports
+#print airports
 
 
 mydict = {
@@ -44,10 +44,10 @@ url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSou
 for airportcode in airports:
 	if airportcode == "NULL":
 		continue
-	print airportcode
+	#print airportcode
 	url = url + airportcode + ","
 
-print url
+#print url
 content = urllib2.urlopen(url).read()
 #print content
 
@@ -59,16 +59,17 @@ for metar in root.iter('METAR'):
 	if airportcode == "NULL":
 		continue
 	stationId = metar.find('station_id').text
-	print stationId
+	#print stationId
 	if metar.find('flight_category') is None:
-		print "Skipping"
+		#print "Skipping"
 		continue
 
 	flightCateory = metar.find('flight_category').text
-	print stationId + " " + flightCateory
+	#print stationId + " " + flightCateory
 	#logfile.write("\n"+ stationId + " " + flightCateory)
 	if stationId in mydict:
-		print "duplicate, only save first metar"
+            continue
+	#	logfile.write("\nduplicate, only save first metar")
 	else:
 		mydict[stationId] = flightCateory
 
@@ -81,47 +82,37 @@ for airportcode in airports:
 	if airportcode == "NULL":
 		i = i +1
 		continue
-	print
+	#print
 	color = Color(0,0,0)
 
 	flightCateory = mydict.get(airportcode,"No")
-	print airportcode + " " + flightCateory
+	#print airportcode + " " + flightCateory
 
 	if  flightCateory != "No":
 
 		if flightCateory == "VFR":
-			print "VFR"
+			#print "VFR"
 			color = Color(255,0,0)
 		elif flightCateory == "MVFR":
 			color = Color(0,0,255)
-			print "MVFR"
+			#print "MVFR"
 		elif flightCateory == "IFR":
 			color = Color(0,255,0)
-			print "IFR"
+			#print "IFR"
 		elif flightCateory == "LIFR":
 			color = Color(0,128,128)
-			print "LIFR"
+			#print "LIFR"
 	else:
 		color = Color(128,128,128)
-		print "N/A"
+		#print "N/A"
 
-	print "Setting light " + str(i) + " for " + airportcode + " " + flightCateory + " " + str(color)
+	# print "Setting light " + str(i) + " for " + airportcode + " " + flightCateory + " " + str(color)
 	logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCateory + " " + str(color))
 	strip.setPixelColor(i, color)
 	strip.show()
 
 	i = i+1
-print
-logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+#print
+logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
 print "fin"
 quit()
-
-
-
-
-
-
-
-
-
-

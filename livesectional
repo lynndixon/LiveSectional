@@ -1,0 +1,10 @@
+/var/log/livesectional.log {
+  daily
+  rotate 4
+  missingok
+  notifempty
+  compress
+  postrotate
+    invoke-rc.d rsyslog rotate >/dev/null 2>&1 || true
+  endscript
+}
