@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `livesectional` - Added in etc/logrotate.d/ directory to configure logrotatation
+- `shutdown.py` - Script to wipe all the LEDs on shutdown.
+- `livesectional.service` - SystemD service file to start / stop the service
 
 ### Changed
 
