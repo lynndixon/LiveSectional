@@ -1,0 +1,10 @@
+[Unit]
+Description=LiveSectional Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/bin/bash /LiveSectional/startup.sh
+
+[Install]
+WantedBy=multi-user.target
