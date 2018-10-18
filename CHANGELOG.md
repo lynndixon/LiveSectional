@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `airports` - Final update for the entire ATL sectional
 - `live_sectional.py` - Removed the print lines for performance and updated writing to log file.
+- `test.py` - Updated to include a color wipe back to off on the LEDs.
 
 
 ## [1.0.0] - 2018-08-03
