@@ -5,6 +5,7 @@ After=multi-user.target
 [Service]
 Type=idle
 ExecStart=/bin/bash /LiveSectional/startup.sh
+RemainAfterExit=true
 ExecStop=/usr/bin/python /LiveSectional/shutdown.py
 
 [Install]
