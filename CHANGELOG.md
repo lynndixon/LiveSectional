@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2018-10-12
+
+### Added
+
+- `livesectional` - Added in etc/logrotate.d/ directory to configure logrotatation
+
+### Changed
+
+- `airports` - Final update for the entire ATL sectional
+- `live_sectional.py` - Removed the print lines for performance and updated writing to log file.
+
+
 ## [1.0.0] - 2018-08-03
 
 ### Added
