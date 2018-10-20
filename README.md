@@ -2,6 +2,8 @@
 
 Controls NeoPixel LED's to display conditions at airports.
 
+Heres a quick video that demonstrates what this does: [LiveSectional Demo on YouTube](https://www.youtube.com/watch?v=QGhew5iJEAY)
+
 ## Installation and setup
 
 1. Fully update the Pi:
