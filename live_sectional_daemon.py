@@ -125,7 +125,7 @@ class App():
             logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
             strip.show()
             print "LiveSectional Update completed!"
-            time.sleep(120)
+            time.sleep(600)
 
 app = App()
 daemon_runner = runner.DaemonRunner(app)
