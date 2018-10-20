@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2018-10-19
+
+### Added
+
+- `live_sectional_daemon.py` - New method that runs as a daemon using python-daemon. Does `strip.show()` after the color setting loop so there isn't a wipe effect.  Only LED's that change category will change color....not the entire strip.
+- `shutdown.sh` - Modified to use live_sectional_daemon.py as its stopping script.
+
+### Changed
+
+- `startup.sh` - Modified to use live_sectional_daemon.py as its starter script.
+- Renamed `shutdown.py` to `wipe.py` because all it does is wipe the strip to dark colors.
+- `live_sectional.service` modified to point to new `shutdown.sh` script instead of `shutdown.py`
+
 ## [1.0.1] - 2018-10-12
 
 ### Added
