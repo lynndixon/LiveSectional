@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `startup.sh` - Modified to use live_sectional_daemon.py as its starter script.
 - Renamed `shutdown.py` to `wipe.py` because all it does is wipe the strip to dark colors.
 - `live_sectional.service` modified to point to new `shutdown.sh` script instead of `shutdown.py`
+- `live_sectional_daemon.py` - include a logfile.close() to close up the log file after the loop is done.
 
 ## [1.0.1] - 2018-10-12
 

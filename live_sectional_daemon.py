@@ -121,10 +121,11 @@ class App():
                 strip.setPixelColor(i, color)
 
                 i = i+1
-            
+
             logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
             strip.show()
             print "LiveSectional Update completed!"
+            logfile.close()
             time.sleep(600)
 
 app = App()
