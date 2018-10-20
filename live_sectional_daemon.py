@@ -11,8 +11,8 @@ from daemon import runner
 class App():
     def __init__(self):
         self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/tty'
-        self.stderr_path = '/dev/tty'
+        self.stdout_path = '/dev/null'
+        self.stderr_path = '/dev/null'
         self.pidfile_path =  '/var/run/livesectional.pid'
         self.pidfile_timeout = 5
     def run(self):
@@ -121,9 +121,9 @@ class App():
                 strip.setPixelColor(i, color)
 
                 i = i+1
-            #print
-            strip.show()
+            
             logfile.write("\nLiveSectional updated succesfully at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
+            strip.show()
             print "LiveSectional Update completed!"
             time.sleep(120)
 
