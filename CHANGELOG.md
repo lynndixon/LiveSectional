@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] - 2018-10-19
+## [1.1.0] - 2018-10-27
 
 ### Added
 
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Renamed `shutdown.py` to `wipe.py` because all it does is wipe the strip to dark colors.
 - `live_sectional.service` modified to point to new `shutdown.sh` script instead of `shutdown.py`
 - `live_sectional_daemon.py` - include a logfile.close() to close up the log file after the loop is done.
+- `live_sectional_daemon.py` - Bumped the refresh down to 7.5 minutes, and adjusted the brightness down...it was retina melting bright.
 
 ## [1.0.1] - 2018-10-12
 
