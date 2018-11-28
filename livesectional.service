@@ -3,10 +3,14 @@ Description=LiveSectional Service
 After=multi-user.target
 
 [Service]
-Type=idle
-ExecStart=/bin/bash /LiveSectional/startup.sh
-RemainAfterExit=true
-ExecStop=/bin/bash /LiveSectional/shutdown.sh
+Type=simple
+Restart=always
+PIDFile=/var/run/livesectional.pid
+ExecStartPre=/bin/bash /LiveSectional/startup.sh
+ExecStart=-/usr/bin/python /LiveSectional/live_sectional_daemon.py start
+
+ExecStop=/usr/bin/python /LiveSectional/live_sectional_daemon.py stop
+ExecStopPost=/bin/bash /LiveSectional/shutdown.sh
 
 [Install]
 WantedBy=multi-user.target
