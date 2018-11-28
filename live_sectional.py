@@ -40,7 +40,7 @@ mydict = {
 }
 
 
-url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&mostRecent=true&stationString="
+url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&stationString="
 for airportcode in airports:
 	if airportcode == "NULL":
 		continue
@@ -64,10 +64,14 @@ for metar in root.iter('METAR'):
 		#print "Skipping"
 		continue
 
-	flightCategory = metar.find('flight_category').text
+	flightCateory = metar.find('flight_category').text
 	#print stationId + " " + flightCateory
 	#logfile.write("\n"+ stationId + " " + flightCateory)
-	mydict[stationId] = flightCategory
+	if stationId in mydict:
+            continue
+	#	logfile.write("\nduplicate, only save first metar")
+	else:
+		mydict[stationId] = flightCateory
 
 
 
