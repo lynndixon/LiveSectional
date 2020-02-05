@@ -70,13 +70,48 @@ class App():
                     continue
                 stationId = metar.find('station_id').text
                 #print stationId
-                if metar.find('flight_category') is None:
-                    #print "Skipping"
-                    continue
+                if metar.find('flight_category') is None: # If we can't find the flight category in the XML, lets try and determine it.
+                    logfile.write("\nNO CATEGORY FOUND IN XML. Attempting to determine the category for " + airportcode)
 
-                flightCateory = metar.find('flight_category').text
-                #print stationId + " " + flightCateory
-                #logfile.write("\n"+ stationId + " " + flightCateory)
+                    flightCategory = "VFR" #intialize flight category
+
+                    #There can be multiple layers of clouds in each METAR, but they are always listed lowest AGL first.
+                    #Check the lowest (first) layer and see if it's overcast, broken, or obscured. If it is, then compare to cloud base height to set flight category.
+                    #This algorithm basically sets the flight category based on the lowest OVC, BKN or OVX layer.
+
+                    for sky_condition in metar.iter('sky_condition'):   #for each sky_condition from the XML
+                            sky_cvr = sky_condition.attrib['sky_cover']     #get the sky cover (BKN, OVC, SCT, etc)
+                            if sky_cvr in ("OVC","BKN","OVX"): #If the layer is OVC, BKN or OVX, set Flight category based on height AGL
+                                    cld_base_ft_agl = sky_condition.attrib['cloud_base_ft_agl'] #get cloud base AGL from XML
+                                    cld_base_ft_agl = int(cld_base_ft_agl)                      #convert string to integer
+                                    if cld_base_ft_agl < 500:
+                                            flightCategory = "LIFR"
+                                            break
+                                    elif 500 <= cld_base_ft_agl < 1000:
+                                            flightCategory = "IFR"
+                                            break
+                                    elif 1000 <= cld_base_ft_agl <= 3000:
+                                            flightCategory = "MVFR"
+                                            break
+                                    elif cld_base_ft_agl > 3000:
+                                            flightCategory = "VFR"
+                                            break
+
+                    #visibilty can also set flight category. If the clouds haven't set the fltcat to LIFR. See if visibility will
+                    if flightCategory != "LIFR": #if it's LIFR due to cloud layer, no reason to check any other things that can set flight category.
+                            if metar.find('visibility_statute_mi') is not None: #check XML if visibility value exists
+                                    visibility_statute_mi = metar.find('visibility_statute_mi').text   #get visibility number
+                                    visibility_statute_mi = float(visibility_statute_mi)               #convert string to float
+                                    if visibility_statute_mi < 1.0:
+                                            flightCategory = "LIFR"
+                                    elif 1.0 <= visibility_statute_mi < 3.0:
+                                            flightCategory = "IFR"
+                                    elif 3.0 <= visibility_statute_mi <= 5.0 and flightCategory != "IFR":  #if Flight Category was already set to IFR by clouds, it can't be reduced to MVFR
+                                            flightCategory = "MVFR"
+                else:
+                    flightCateory = metar.find('flight_category').text
+                    #print stationId + " " + flightCateory
+                    #logfile.write("\n"+ stationId + " " + flightCateory)
                 if stationId in mydict:
                         continue
                 #	logfile.write("\nduplicate, only save first metar")
