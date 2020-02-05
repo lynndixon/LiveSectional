@@ -50,7 +50,7 @@ class App():
             }
 
 
-            url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&stationString="
+            url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&mostRecentForEachStation=true&stationString="
             for airportcode in airports:
                 if airportcode == "NULL":
                     continue
@@ -112,13 +112,7 @@ class App():
                     flightCategory = metar.find('flight_category').text
                     #print stationId + " " + flightCategory
                     #logfile.write("\n"+ stationId + " " + flightCategory)
-                if stationId in mydict:
-                        continue
-                #	logfile.write("\nduplicate, only save first metar")
-                else:
                     mydict[stationId] = flightCategory
-
-
 
             #print mydict
 
