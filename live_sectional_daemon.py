@@ -109,14 +109,14 @@ class App():
                                     elif 3.0 <= visibility_statute_mi <= 5.0 and flightCategory != "IFR":  #if Flight Category was already set to IFR by clouds, it can't be reduced to MVFR
                                             flightCategory = "MVFR"
                 else:
-                    flightCateory = metar.find('flight_category').text
-                    #print stationId + " " + flightCateory
-                    #logfile.write("\n"+ stationId + " " + flightCateory)
+                    flightCategory = metar.find('flight_category').text
+                    #print stationId + " " + flightCategory
+                    #logfile.write("\n"+ stationId + " " + flightCategory)
                 if stationId in mydict:
                         continue
                 #	logfile.write("\nduplicate, only save first metar")
                 else:
-                    mydict[stationId] = flightCateory
+                    mydict[stationId] = flightCategory
 
 
 
@@ -130,29 +130,29 @@ class App():
                 #print
                 color = Color(0,0,0)
 
-                flightCateory = mydict.get(airportcode,"No")
-                #print airportcode + " " + flightCateory
+                flightCategory = mydict.get(airportcode,"No")
+                #print airportcode + " " + flightCategory
 
-                if  flightCateory != "No":
+                if  flightCategory != "No":
 
-                    if flightCateory == "VFR":
+                    if flightCategory == "VFR":
                         #print "VFR"
                         color = Color(255,0,0)
-                    elif flightCateory == "MVFR":
+                    elif flightCategory == "MVFR":
                         color = Color(0,0,255)
                         #print "MVFR"
-                    elif flightCateory == "IFR":
+                    elif flightCategory == "IFR":
                         color = Color(0,255,0)
                         #print "IFR"
-                    elif flightCateory == "LIFR":
+                    elif flightCategory == "LIFR":
                         color = Color(0,128,128)
                         #print "LIFR"
                 else:
                     color = Color(128,128,128)
                     #print "N/A"
 
-                # print "Setting light " + str(i) + " for " + airportcode + " " + flightCateory + " " + str(color)
-                logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCateory + " " + str(color))
+                # print "Setting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color)
+                logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color))
                 strip.setPixelColor(i, color)
 
                 i = i+1
