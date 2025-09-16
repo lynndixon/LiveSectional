@@ -56,7 +56,7 @@ content = urllib2.urlopen(url).read()
 
 root = ET.fromstring(content)
 
-if root.find('num_results').text == '0':
+if root.find('num_results') == '0':
     logfile.write("\nNo results found from aviationweather.gov. Possible connection issue.")
     logfile.write("\nLiveSectional update failed at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
 else:
