@@ -59,6 +59,7 @@ root = ET.fromstring(content)
 if root.find('num_results') == '0':
     logfile.write("\nNo results found from aviationweather.gov. Possible connection issue.")
     logfile.write("\nLiveSectional update failed at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
+    flightCategory = "No"
 else:
     for metar in root.iter('METAR'):
         if airportcode == "NULL":
