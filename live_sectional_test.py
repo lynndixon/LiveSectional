@@ -107,10 +107,10 @@ else:
         else:
             flightCategory = metar.find('flight_category').text
             #print stationId + " " + flightCategory
-            #logfile.write("\n"+ stationId + " " + flightCategory)
+            logfile.write("\n"+ stationId + " " + flightCategory)
         if stationId in mydict:
-                continue
-        #	logfile.write("\nduplicate, only save first metar")
+                logfile.write("\nduplicate, only save first metar")
+                continue     	
         else:
             mydict[stationId] = flightCategory
 
@@ -148,7 +148,7 @@ for airportcode in airports:
         #print "N/A"
 
     # print "Setting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color)
-    #logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color))
+    logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color))
     strip.setPixelColor(i, color)
 
     i = i+1
