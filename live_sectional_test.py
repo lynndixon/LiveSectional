@@ -147,7 +147,7 @@ for airportcode in airports:
         #print "N/A"
 
     # print "Setting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color)
-    logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color))
+    #logfile.write("\nSetting light " + str(i) + " for " + airportcode + " " + flightCategory + " " + str(color))
     strip.setPixelColor(i, color)
 
     i = i+1
