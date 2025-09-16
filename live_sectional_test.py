@@ -60,6 +60,7 @@ if root.find('num_results') == '0':
     logfile.write("\nNo results found from aviationweather.gov. Possible connection issue.")
     logfile.write("\nLiveSectional update failed at: " +str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))+"\n")
     flightCategory = "No"
+    weather = "NONE"
 else:
     for metar in root.iter('METAR'):
         if airportcode == "NULL":
@@ -105,9 +106,12 @@ else:
                             elif 3.0 <= visibility_statute_mi <= 5.0 and flightCategory != "IFR":  #if Flight Category was already set to IFR by clouds, it can't be reduced to MVFR
                                     flightCategory = "MVFR"
         else:
-            flightCategory = metar.find('flight_category').text
-            #print stationId + " " + flightCategory
-            logfile.write("\n"+ stationId + " " + flightCategory)
+            if weather == "NONE":
+                flightCategory = "No"
+            else:
+                flightCategory = metar.find('flight_category').text
+                #print stationId + " " + flightCategory
+                logfile.write("\n"+ stationId + " " + flightCategory)
         if stationId in mydict:
                 logfile.write("\nduplicate, only save first metar")
                 continue     	
