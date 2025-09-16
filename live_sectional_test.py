@@ -106,12 +106,9 @@ else:
                             elif 3.0 <= visibility_statute_mi <= 5.0 and flightCategory != "IFR":  #if Flight Category was already set to IFR by clouds, it can't be reduced to MVFR
                                     flightCategory = "MVFR"
         else:
-            if root.find('num_results') == '0':
-                flightCategory = "No"
-            else:
-                flightCategory = metar.find('flight_category').text
-                #print stationId + " " + flightCategory
-                logfile.write("\n"+ stationId + " " + flightCategory)
+            flightCategory = metar.find('flight_category').text
+            #print stationId + " " + flightCategory
+            logfile.write("\n"+ stationId + " " + str(flightCategory))
         if stationId in mydict:
                 logfile.write("\nduplicate, only save first metar")
                 continue     	
