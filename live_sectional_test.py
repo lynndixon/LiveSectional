@@ -1,3 +1,14 @@
+#!/usr/bin/python
+import urllib2
+import xml.etree.ElementTree as ET
+import time
+from neopixel import *
+import sys
+import os
+import datetime
+from daemon import runner
+
+
 # LED strip configuration:
 LED_COUNT      = 136      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
