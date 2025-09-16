@@ -70,6 +70,8 @@ class App():
                     continue
                 stationId = metar.find('station_id').text
                 #print stationId
+                if metar.find(num_results) == 0:
+                    flightCategory = "No"
                 if metar.find('flight_category') is None: # If we can't find the flight category in the XML, lets try and determine it.
                     logfile.write("\nNO CATEGORY FOUND IN XML. Attempting to determine the category for " + airportcode)
 
