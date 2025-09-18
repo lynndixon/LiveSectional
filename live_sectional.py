@@ -34,16 +34,16 @@ def update_map():
         "":""
     }
 
-
+    url = BASE_URL
     for airportcode in airports:
         if airportcode == "NULL":
             continue
         #print airportcode
-        url = BASE_URL + airportcode + ","
+        url = url + airportcode + ","
         
     url = url[:-1]
 
-    #print url
+    print url
     content = urllib2.urlopen(url).read()
     #print content
 
