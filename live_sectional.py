@@ -158,3 +158,7 @@ def update_map():
     strip.show()
     print("LiveSectional Update completed!")
     logfile.close()
+
+if __name__ == "__main__":
+      update_map()
+            
