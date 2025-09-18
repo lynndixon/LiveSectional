@@ -6,6 +6,7 @@
 import time
 from neopixel import *
 from config import *
+LED_STRIP = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 
 def wheel(pos):
 	"""Generate rainbow colors across 0-255 positions."""

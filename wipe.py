@@ -11,7 +11,7 @@ import argparse
 import sys
 from config import *
 
-
+LED_STRIP = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 
 # Define functions which animate LEDs in various ways.
 

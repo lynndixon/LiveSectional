@@ -9,6 +9,7 @@ import datetime
 from daemon import runner
 from config import *
 
+LED_STRIP = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 
 def update_map():
     now            = now = datetime.datetime.now()
