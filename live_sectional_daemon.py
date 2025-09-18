@@ -12,8 +12,8 @@ from live_sectional import update_map
 class App():
     def __init__(self):
         self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/null'
-        self.stderr_path = '/dev/null'
+        self.stdout_path = '/var/log/livesectional.log'
+        self.stderr_path = '/var/log/livesectional.log'
         self.pidfile_path =  '/var/run/livesectional.pid'
         self.pidfile_timeout = 5
     def run(self):

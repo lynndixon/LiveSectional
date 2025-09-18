@@ -7,18 +7,11 @@ import sys
 import os
 import datetime
 from daemon import runner
+from config import *
+
+LED_STRIP = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 
 def update_map():
-    # LED strip configuration:
-    LED_COUNT      = 136      # Number of LED pixels.
-    LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
-    #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-    LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
-    LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
-    LED_BRIGHTNESS = 16     # Set to 0 for darkest and 255 for brightest
-    LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
-    LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
-    LED_STRIP      = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
     now            = now = datetime.datetime.now()
     timestamp      = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -41,13 +34,14 @@ def update_map():
         "":""
     }
 
-
-    url = "https://aviationweather.gov/cgi-bin/data/dataserver.php?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&mostRecentForEachStation=true&stationString="
+    url = BASE_URL
     for airportcode in airports:
         if airportcode == "NULL":
             continue
         #print airportcode
         url = url + airportcode + ","
+        
+    url = url[:-1]
 
     #print url
     content = urllib2.urlopen(url).read()
@@ -158,3 +152,7 @@ def update_map():
     strip.show()
     print("LiveSectional Update completed!")
     logfile.close()
+
+if __name__ == "__main__":
+      update_map()
+            
