@@ -11,7 +11,6 @@ from config import *
 
 
 def update_map():
-    LED_STRIP      = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
     now            = now = datetime.datetime.now()
     timestamp      = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -43,7 +42,7 @@ def update_map():
         
     url = url[:-1]
 
-    print url
+    #print url
     content = urllib2.urlopen(url).read()
     #print content
 

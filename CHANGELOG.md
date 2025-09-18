@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-09-18
+### Added
+-  `config.py` - Config file to store all our configurations. 
+-  `archive` - Directory for older code, kept for reference only.  Will go away soon?
+
+### Changed
+-  `live_sectional_daemon.py` - Cleaned this up immensley by importing the method(s) from `live_sectional.py`. 
+-  `live_sectiona.py` - Refacorted this entire file, Its actually used and not a manual copy from the daemon. Makes for cleaner troubleshooting and updating.  Also corrected the FAA url, as it changed on 2025-09-17. 
+
 ## [1.1.0] - 2018-10-27
 
 ### Added
