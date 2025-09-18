@@ -42,14 +42,16 @@ def update_map():
     }
 
 
-    url = "https://aviationweather.gov/cgi-bin/data/dataserver.php?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=1.5&mostRecentForEachStation=true&stationString="
+    url = "https://aviationweather.gov/api/data/metar?format=xml&ids="
     for airportcode in airports:
         if airportcode == "NULL":
             continue
         #print airportcode
         url = url + airportcode + ","
+        
+    url = url[:-1]
 
-    #print url
+    print url
     content = urllib2.urlopen(url).read()
     #print content
 
